@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="472" viewBox="0 0 680 472">
+<title>担当区分別内訳</title>
+<text x="28.0" y="34.0" font-family="Yu Gothic, Meiryo, Arial, sans-serif" font-size="24" font-weight="700" fill="#1E3A8A" text-anchor="start">担当区分別内訳</text>
+<circle cx="340.0" cy="248.0" r="150.0" fill="#F3F4F6"/>
+<path d="M 340.00 98.00 A 150.00 150.00 0 1 1 262.29 376.30 L 294.41 323.27 A 88.00 88.00 0 1 0 340.00 160.00 Z" fill="#2563EB"/>
+<path d="M 253.53 370.57 A 150.00 150.00 0 0 1 340.00 98.00 L 340.00 160.00 A 88.00 88.00 0 0 0 289.27 319.91 Z" fill="#16A34A"/>
+<circle cx="340.0" cy="248.0" r="87.0" fill="#FFFFFF"/>
+<text x="340.0" y="244.0" font-family="Yu Gothic, Meiryo, Arial, sans-serif" font-size="34" font-weight="700" fill="#111827" text-anchor="middle">103</text>
+<text x="340.0" y="276.0" font-family="Yu Gothic, Meiryo, Arial, sans-serif" font-size="18" font-weight="400" fill="#6B7280" text-anchor="middle">合計</text>
+<rect x="28" y="174" width="18" height="18" rx="5" fill="#2563EB"/>
+<text x="56.0" y="192.0" font-family="Yu Gothic, Meiryo, Arial, sans-serif" font-size="24" font-weight="700" fill="#1E3A8A" text-anchor="start">担当A</text>
+<text x="56.0" y="234.0" font-family="Yu Gothic, Meiryo, Arial, sans-serif" font-size="32" font-weight="700" fill="#111827" text-anchor="start">61件</text>
+<text x="56.0" y="266.0" font-family="Yu Gothic, Meiryo, Arial, sans-serif" font-size="20" font-weight="600" fill="#6B7280" text-anchor="start">59%</text>
+<rect x="524" y="174" width="18" height="18" rx="5" fill="#16A34A"/>
+<text x="552.0" y="192.0" font-family="Yu Gothic, Meiryo, Arial, sans-serif" font-size="24" font-weight="700" fill="#166534" text-anchor="start">担当B</text>
+<text x="552.0" y="234.0" font-family="Yu Gothic, Meiryo, Arial, sans-serif" font-size="32" font-weight="700" fill="#111827" text-anchor="start">42件</text>
+<text x="552.0" y="266.0" font-family="Yu Gothic, Meiryo, Arial, sans-serif" font-size="20" font-weight="600" fill="#6B7280" text-anchor="start">41%</text>
+</svg>

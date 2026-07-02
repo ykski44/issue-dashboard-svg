@@ -1,0 +1,93 @@
+{
+  "meta": {
+    "reportDate": "2026-07-01",
+    "note": "数値はサンプル"
+  },
+  "titles": {
+    "status": "ステータス別件数",
+    "teamPriority": "グループ別 未完了件数（優先度別）",
+    "owner": "担当区分別内訳"
+  },
+  "priorities": [
+    {
+      "key": "prior1",
+      "name": "高"
+    },
+    {
+      "key": "prior2",
+      "name": "中"
+    },
+    {
+      "key": "prior3",
+      "name": "低"
+    }
+  ],
+  "status": [
+    {
+      "name": "新規",
+      "value": 18,
+      "kind": "open"
+    },
+    {
+      "name": "対応中",
+      "value": 52,
+      "kind": "active"
+    },
+    {
+      "name": "保留",
+      "value": 7,
+      "kind": "hold"
+    },
+    {
+      "name": "確認待ち",
+      "value": 26,
+      "kind": "waiting"
+    },
+    {
+      "name": "完了",
+      "value": 198,
+      "kind": "done"
+    },
+    {
+      "name": "アーカイブ",
+      "value": 35,
+      "kind": "archived"
+    }
+  ],
+  "teamPriority": [
+    {
+      "team": "グループA",
+      "prior1": 2,
+      "prior2": 18,
+      "prior3": 10
+    },
+    {
+      "team": "グループB",
+      "prior1": 1,
+      "prior2": 12,
+      "prior3": 6
+    },
+    {
+      "team": "グループC",
+      "prior1": 1,
+      "prior2": 14,
+      "prior3": 8
+    },
+    {
+      "team": "グループD",
+      "prior1": 0,
+      "prior2": 6,
+      "prior3": 25
+    }
+  ],
+  "owner": {
+    "primary": {
+      "name": "担当A",
+      "value": 61
+    },
+    "secondary": {
+      "name": "担当B",
+      "value": 42
+    }
+  }
+}

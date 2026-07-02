@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1465" height="510" viewBox="0 0 1465 510">
+<title>ステータス別件数</title>
+<text x="28.0" y="34.0" font-family="Yu Gothic, Meiryo, Arial, sans-serif" font-size="24" font-weight="700" fill="#1E3A8A" text-anchor="start">ステータス別件数</text>
+<line x1="205.0" y1="54" x2="205.0" y2="468" stroke="#E5E7EB" stroke-width="1"/>
+<text x="205.0" y="494.0" font-family="Yu Gothic, Meiryo, Arial, sans-serif" font-size="17" font-weight="400" fill="#6B7280" text-anchor="middle">0</text>
+<line x1="446.0" y1="54" x2="446.0" y2="468" stroke="#E5E7EB" stroke-width="1"/>
+<text x="446.0" y="494.0" font-family="Yu Gothic, Meiryo, Arial, sans-serif" font-size="17" font-weight="400" fill="#6B7280" text-anchor="middle">40</text>
+<line x1="687.0" y1="54" x2="687.0" y2="468" stroke="#E5E7EB" stroke-width="1"/>
+<text x="687.0" y="494.0" font-family="Yu Gothic, Meiryo, Arial, sans-serif" font-size="17" font-weight="400" fill="#6B7280" text-anchor="middle">80</text>
+<line x1="928.0" y1="54" x2="928.0" y2="468" stroke="#E5E7EB" stroke-width="1"/>
+<text x="928.0" y="494.0" font-family="Yu Gothic, Meiryo, Arial, sans-serif" font-size="17" font-weight="400" fill="#6B7280" text-anchor="middle">120</text>
+<line x1="1169.0" y1="54" x2="1169.0" y2="468" stroke="#E5E7EB" stroke-width="1"/>
+<text x="1169.0" y="494.0" font-family="Yu Gothic, Meiryo, Arial, sans-serif" font-size="17" font-weight="400" fill="#6B7280" text-anchor="middle">160</text>
+<line x1="1410.0" y1="54" x2="1410.0" y2="468" stroke="#E5E7EB" stroke-width="1"/>
+<text x="1410.0" y="494.0" font-family="Yu Gothic, Meiryo, Arial, sans-serif" font-size="17" font-weight="400" fill="#6B7280" text-anchor="middle">200</text>
+<text x="32.0" y="96.0" font-family="Yu Gothic, Meiryo, Arial, sans-serif" font-size="24" font-weight="600" fill="#111827" text-anchor="start">新規</text>
+<rect x="205" y="68" width="1205" height="42" rx="21" fill="#F3F4F6"/>
+<rect x="205" y="68" width="108.5" height="42" rx="21" fill="#2563EB"/>
+<text x="329.4" y="95.0" font-family="Yu Gothic, Meiryo, Arial, sans-serif" font-size="23" font-weight="700" fill="#111827" text-anchor="start">18</text>
+<text x="32.0" y="160.0" font-family="Yu Gothic, Meiryo, Arial, sans-serif" font-size="24" font-weight="600" fill="#111827" text-anchor="start">対応中</text>
+<rect x="205" y="132" width="1205" height="42" rx="21" fill="#F3F4F6"/>
+<rect x="205" y="132" width="313.3" height="42" rx="21" fill="#3B82F6"/>
+<text x="534.3" y="159.0" font-family="Yu Gothic, Meiryo, Arial, sans-serif" font-size="23" font-weight="700" fill="#111827" text-anchor="start">52</text>
+<text x="32.0" y="224.0" font-family="Yu Gothic, Meiryo, Arial, sans-serif" font-size="24" font-weight="600" fill="#111827" text-anchor="start">保留</text>
+<rect x="205" y="196" width="1205" height="42" rx="21" fill="#F3F4F6"/>
+<rect x="205" y="196" width="42.2" height="42" rx="21" fill="#F59E0B"/>
+<text x="263.2" y="223.0" font-family="Yu Gothic, Meiryo, Arial, sans-serif" font-size="23" font-weight="700" fill="#111827" text-anchor="start">7</text>
+<text x="32.0" y="288.0" font-family="Yu Gothic, Meiryo, Arial, sans-serif" font-size="24" font-weight="600" fill="#111827" text-anchor="start">確認待ち</text>
+<rect x="205" y="260" width="1205" height="42" rx="21" fill="#F3F4F6"/>
+<rect x="205" y="260" width="156.7" height="42" rx="21" fill="#7C3AED"/>
+<text x="377.6" y="287.0" font-family="Yu Gothic, Meiryo, Arial, sans-serif" font-size="23" font-weight="700" fill="#111827" text-anchor="start">26</text>
+<text x="32.0" y="352.0" font-family="Yu Gothic, Meiryo, Arial, sans-serif" font-size="24" font-weight="600" fill="#111827" text-anchor="start">完了</text>
+<rect x="205" y="324" width="1205" height="42" rx="21" fill="#F3F4F6"/>
+<rect x="205" y="324" width="1193.0" height="42" rx="21" fill="#16A34A"/>
+<text x="1414.0" y="351.0" font-family="Yu Gothic, Meiryo, Arial, sans-serif" font-size="23" font-weight="700" fill="#111827" text-anchor="start">198</text>
+<text x="32.0" y="416.0" font-family="Yu Gothic, Meiryo, Arial, sans-serif" font-size="24" font-weight="600" fill="#111827" text-anchor="start">アーカイブ</text>
+<rect x="205" y="388" width="1205" height="42" rx="21" fill="#F3F4F6"/>
+<rect x="205" y="388" width="210.9" height="42" rx="21" fill="#6B7280"/>
+<text x="431.9" y="415.0" font-family="Yu Gothic, Meiryo, Arial, sans-serif" font-size="23" font-weight="700" fill="#111827" text-anchor="start">35</text>
+</svg>

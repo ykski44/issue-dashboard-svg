@@ -1,0 +1,169 @@
+{
+  // SVG全体で使うフォントファミリーです。
+  "fontFamily": "Yu Gothic, Meiryo, Arial, sans-serif",
+
+  // SVG内で使う基本色です。
+  "colors": {
+    // 通常テキストの色です。
+    "text": "#111827",
+    // 補助テキスト、軸ラベル、比率表示の色です。
+    "muted": "#6B7280",
+    // 見出しや強調合計値の色です。
+    "heading": "#1E3A8A",
+    // 白文字や中央抜きに使う色です。
+    "white": "#FFFFFF",
+    // 棒グラフの背景トラック色です。
+    "track": "#F3F4F6",
+    // 目盛り線の色です。
+    "grid": "#E5E7EB",
+    // ステータス種別ごとの棒色です。入力JSONの status[].kind と対応します。
+    "status": {
+      "open": "#2563EB",
+      "active": "#3B82F6",
+      "hold": "#F59E0B",
+      "waiting": "#7C3AED",
+      "done": "#16A34A",
+      "archived": "#6B7280"
+    },
+    // 優先度ごとの積み上げ棒色です。入力JSONの priorities[].key と対応します。
+    "priority": {
+      "prior1": "#DC2626",
+      "prior2": "#F59E0B",
+      "prior3": "#2563EB"
+    },
+    // 担当区分別ドーナツチャートの色です。
+    "owner": {
+      "primary": "#2563EB",
+      "secondary": "#16A34A",
+      "primaryText": "#1E3A8A",
+      "secondaryText": "#166534"
+    }
+  },
+
+  // 文字サイズと太さの設定です。
+  "textStyles": {
+    // 各SVG内の小さなタイトルです。
+    "title": { "size": 24, "weight": "700" },
+    // 棒グラフ左側の項目ラベルです。
+    "label": { "size": 24, "weight": "600" },
+    // 値ラベルや合計値です。
+    "value": { "size": 23, "weight": "700" },
+    // 目盛りラベルです。
+    "axis": { "size": 17, "weight": "400" },
+    // 優先度凡例の文字です。
+    "legend": { "size": 21, "weight": "600" },
+    // 積み上げ棒の中に出す値です。
+    "segmentValue": { "size": 19, "smallSize": 16, "weight": "700" },
+    // ドーナツ中央の合計値です。
+    "donutTotal": { "size": 34, "weight": "700" },
+    // ドーナツ中央の「合計」ラベルです。
+    "donutCenterLabel": { "size": 18, "weight": "400" },
+    // ドーナツ左右の担当区分名です。
+    "ownerLabel": { "size": 24, "weight": "700" },
+    // ドーナツ左右の件数です。
+    "ownerValue": { "size": 32, "weight": "700" },
+    // ドーナツ左右の比率です。
+    "ownerPercent": { "size": 20, "weight": "600" }
+  },
+
+  // ステータス別件数グラフの見た目設定です。
+  "statusChart": {
+    // SVGの出力サイズです。
+    "width": 1465,
+    "height": 510,
+    // グラフ描画領域の左右余白です。
+    "marginLeft": 205,
+    "marginRight": 55,
+    // タイトル位置です。
+    "titleX": 28,
+    "titleY": 34,
+    // 棒グラフの開始Y座標です。
+    "chartTop": 68,
+    // 1行分の高さです。
+    "rowHeight": 64,
+    // 棒の高さです。
+    "barHeight": 42,
+    // 棒とトラックの角丸です。
+    "barRadius": 21,
+    // 左側ラベルのX座標です。
+    "labelX": 32,
+    // 値ラベルと棒の間隔です。
+    "valueGap": 16,
+    // 軸の丸め単位です。
+    "axisRoundStep": 10,
+    // 目盛りの最小間隔です。
+    "tickMinStep": 10,
+    // 0より大きい場合、目盛り間隔を固定します。
+    "tickStep": 0,
+    // 目盛り線の上端を chartTop からどれだけ上に出すかです。
+    "gridTopOffset": 14,
+    // 目盛り線の下端をSVG下端からどれだけ上に置くかです。
+    "gridBottomOffset": 42,
+    // 目盛りラベルをSVG下端からどれだけ上に置くかです。
+    "axisLabelBottomOffset": 16,
+    // 行ラベルのベースラインを棒のY座標からどれだけ下げるかです。
+    "rowLabelBaselineOffset": 28,
+    // 値ラベルのベースラインを棒のY座標からどれだけ下げるかです。
+    "valueBaselineOffset": 27,
+    // 右端側で値ラベルがはみ出さないようにする余白です。
+    "valueRightPadding": 42
+  },
+
+  // グループ別積み上げ棒グラフの見た目設定です。
+  "teamPriorityChart": {
+    "width": 1512,
+    "height": 510,
+    "marginLeft": 225,
+    "marginRight": 120,
+    "titleX": 28,
+    "titleY": 34,
+    "chartTop": 112,
+    "rowHeight": 78,
+    "barHeight": 54,
+    "barRadius": 27,
+    "segmentRadius": 12,
+    "labelX": 32,
+    "totalXOffset": 36,
+    "legendRight": 345,
+    "legendY": 33,
+    "legendStep": 105,
+    "legendSwatchSize": 22,
+    "legendSwatchRadius": 5,
+    "axisRoundStep": 5,
+    "tickMinStep": 5,
+    "tickStep": 5,
+    "segmentValueMinWidth": 24,
+    "segmentValueNormalWidth": 36,
+    "gridTopOffset": 40,
+    "gridBottomOffset": 70,
+    "axisLabelBottomOffset": 48,
+    "rowLabelBaselineOffset": 36,
+    "segmentValueBaselineOffset": 35,
+    "totalBaselineOffset": 35
+  },
+
+  // 担当区分別ドーナツチャートの見た目設定です。
+  "ownerDonutChart": {
+    "width": 680,
+    "height": 472,
+    "titleX": 28,
+    "titleY": 34,
+    "centerX": 340,
+    "centerY": 248,
+    "outerRadius": 150,
+    "innerRadius": 88,
+    "gapDegrees": 2,
+    "legendSwatchSize": 18,
+    "legendSwatchRadius": 5,
+    "primaryX": 28,
+    "secondaryX": 524,
+    "ownerY": 174,
+    "centerTotalYOffset": -4,
+    "centerLabelYOffset": 28,
+    "innerHoleInset": 1,
+    "ownerTextGap": 28,
+    "ownerLabelBaselineOffset": 18,
+    "ownerValueBaselineOffset": 60,
+    "ownerPercentBaselineOffset": 92
+  }
+}
