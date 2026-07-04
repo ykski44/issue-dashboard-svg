@@ -106,6 +106,117 @@ def svg_text(x: float, y: float, text: Any, size: int = 22, weight: str = "400",
     )
 
 
+def estimated_text_units(text: str) -> float:
+    units = 0.0
+    for char in text:
+        code = ord(char)
+        if char in " \t":
+            units += 0.35
+        elif char in "-/()[]{}.,:;":
+            units += 0.45
+        elif code < 128:
+            units += 0.55
+        elif 0xFF61 <= code <= 0xFF9F:
+            units += 0.55
+        else:
+            units += 1.0
+    return units
+
+
+def split_label_line(text: str, max_units: float) -> List[str]:
+    text = text.strip()
+    if not text or estimated_text_units(text) <= max_units:
+        return [text]
+
+    break_chars = " 　・/-／（）()［］[]"
+    preferred_suffixes = [
+        "グループ",
+        "チーム",
+        "主担当",
+        "副担当",
+        "担当",
+        "確認待ち",
+        "アーカイブ",
+        "受付",
+        "対応中",
+        "対応",
+    ]
+    candidates = []
+    preferred_indexes = set()
+    for suffix in preferred_suffixes:
+        idx = text.find(suffix)
+        if idx > 0:
+            preferred_indexes.add(idx)
+
+    for idx in range(1, len(text)):
+        left = text[:idx].rstrip()
+        right = text[idx:].lstrip()
+        if not left or not right:
+            continue
+        left_units = estimated_text_units(left)
+        right_units = estimated_text_units(right)
+        if left_units > max_units or right_units > max_units:
+            continue
+        preferred = idx in preferred_indexes or text[idx - 1] in break_chars or text[idx] in break_chars
+        balance = abs(left_units - right_units)
+        center_distance = abs(idx - len(text) / 2)
+        candidates.append((0 if preferred else 1, balance, center_distance, left, right))
+
+    if candidates:
+        _, _, _, left, right = min(candidates)
+        return [left, right]
+
+    left = ""
+    for idx in range(1, len(text) + 1):
+        candidate = text[:idx].rstrip()
+        if estimated_text_units(candidate) > max_units:
+            break
+        left = candidate
+
+    if not left:
+        return [text]
+
+    return [left, text[len(left):].lstrip()]
+
+
+def wrap_label_text(text: Any, max_width: float, size: int, max_lines: int = 2) -> List[str]:
+    max_units = max(max_width / max(size, 1), 1)
+    lines: List[str] = []
+    for raw_line in str(text).splitlines() or [""]:
+        for line in split_label_line(raw_line, max_units):
+            lines.append(line)
+
+    if len(lines) <= max_lines:
+        return lines
+
+    return lines[:max_lines - 1] + ["".join(lines[max_lines - 1:])]
+
+
+def svg_wrapped_text(x: float, y: float, text: Any, max_width: float,
+                     size: int = 22, weight: str = "400",
+                     fill: str = "#111827", anchor: str = "start",
+                     font_family: str = "Yu Gothic, Meiryo, Arial, sans-serif",
+                     line_height: float = 1.1) -> str:
+    lines = wrap_label_text(text, max_width, size)
+    if len(lines) == 1:
+        return svg_text(x, y, lines[0], size=size, weight=weight, fill=fill, anchor=anchor, font_family=font_family)
+
+    line_gap = size * line_height
+    first_y = y - line_gap / 2
+    tspans = [
+        f'<tspan x="{x:.1f}" y="{first_y:.1f}">{esc(lines[0])}</tspan>',
+        *[
+            f'<tspan x="{x:.1f}" dy="{line_gap:.1f}">{esc(line)}</tspan>'
+            for line in lines[1:]
+        ],
+    ]
+    return (
+        f'<text font-family="{esc(font_family)}" font-size="{size}" font-weight="{weight}" '
+        f'fill="{fill}" text-anchor="{anchor}">'
+        f'{"".join(tspans)}</text>'
+    )
+
+
 def svg_header(title: str, width: int, height: int, style: Dict[str, Any], chart_key: str) -> List[str]:
     font_family = style_str(style, "fontFamily", "Yu Gothic, Meiryo, Arial, sans-serif")
     return [
@@ -203,7 +314,7 @@ def generate_status_bar_chart(status_rows: List[Dict[str, Any]], title: str, sty
         y = chart_top + i * row_h
         bar_w = chart_w * value / axis_max if axis_max else 0
 
-        parts.append(svg_text(label_x, y + style_int(style, "statusChart.rowLabelBaselineOffset", 24), name, size=text_size(style, "label", 22), weight=text_weight(style, "label", "600"), fill=style_str(style, "colors.text", "#111827"), font_family=font_family))
+        parts.append(svg_wrapped_text(label_x, y + style_int(style, "statusChart.rowLabelBaselineOffset", 24), name, max_width=margin_left - label_x - style_int(style, "statusChart.labelRightPadding", 12), size=text_size(style, "label", 22), weight=text_weight(style, "label", "600"), fill=style_str(style, "colors.text", "#111827"), font_family=font_family))
         parts.append(f'<rect x="{margin_left}" y="{y}" width="{chart_w}" height="{bar_h}" rx="{bar_radius}" fill="{style_str(style, "colors.track", "#F3F4F6")}"/>')
         parts.append(f'<rect x="{margin_left}" y="{y}" width="{bar_w:.1f}" height="{bar_h}" rx="{bar_radius}" fill="{color}"/>')
         value_x = min(margin_left + bar_w + value_gap, width - style_int(style, "statusChart.valueRightPadding", 48))
@@ -266,7 +377,7 @@ def generate_team_priority_stacked_bar(rows: List[Dict[str, Any]], priorities: L
         total = sum(value for _, value, _ in values)
         y = chart_top + i * row_h
 
-        parts.append(svg_text(label_x, y + style_int(style, "teamPriorityChart.rowLabelBaselineOffset", 27), team, size=text_size(style, "label", 22), weight=text_weight(style, "label", "600"), fill=style_str(style, "colors.text", "#111827"), font_family=font_family))
+        parts.append(svg_wrapped_text(label_x, y + style_int(style, "teamPriorityChart.rowLabelBaselineOffset", 27), team, max_width=margin_left - label_x - style_int(style, "teamPriorityChart.labelRightPadding", 12), size=text_size(style, "label", 22), weight=text_weight(style, "label", "600"), fill=style_str(style, "colors.text", "#111827"), font_family=font_family))
         x = margin_left
         parts.append(f'<rect x="{margin_left}" y="{y}" width="{chart_w}" height="{bar_h}" rx="{bar_radius}" fill="{style_str(style, "colors.track", "#F3F4F6")}"/>')
 
@@ -368,13 +479,20 @@ def generate_owner_donut_chart(owner: Dict[str, Any], title: str, style: Dict[st
     right_x = style_int(style, "ownerDonutChart.secondaryX", 520)
 
     text_gap = style_int(style, "ownerDonutChart.ownerTextGap", 28)
+    label_padding = style_int(style, "ownerDonutChart.labelRightPadding", 4)
+    left_label_x = left_x + text_gap
+    right_label_x = right_x + text_gap
+    owner_label_y = owner_y + style_int(style, "ownerDonutChart.ownerLabelBaselineOffset", 16)
+    left_label_max_width = max(cx - outer_r - left_label_x - label_padding, 1)
+    right_label_max_width = max(width - right_label_x - label_padding, 1)
+
     parts.append(f'<rect x="{left_x}" y="{owner_y}" width="{swatch_size}" height="{swatch_size}" rx="{swatch_radius}" fill="{secondary_color}"/>')
-    parts.append(svg_text(left_x + text_gap, owner_y + style_int(style, "ownerDonutChart.ownerLabelBaselineOffset", 16), secondary_name, size=text_size(style, "ownerLabel", 22), weight=text_weight(style, "ownerLabel", "700"), fill=style_str(style, "colors.owner.secondaryText", "#166534"), font_family=font_family))
+    parts.append(svg_wrapped_text(left_label_x, owner_label_y, secondary_name, max_width=left_label_max_width, size=text_size(style, "ownerLabel", 22), weight=text_weight(style, "ownerLabel", "700"), fill=style_str(style, "colors.owner.secondaryText", "#166534"), font_family=font_family))
     parts.append(svg_text(left_x + text_gap, owner_y + style_int(style, "ownerDonutChart.ownerValueBaselineOffset", 54), f"{secondary}件", size=text_size(style, "ownerValue", 32), weight=text_weight(style, "ownerValue", "700"), fill=style_str(style, "colors.text", "#111827"), font_family=font_family))
     parts.append(svg_text(left_x + text_gap, owner_y + style_int(style, "ownerDonutChart.ownerPercentBaselineOffset", 84), f"{secondary_pct}%", size=text_size(style, "ownerPercent", 20), weight=text_weight(style, "ownerPercent", "600"), fill=style_str(style, "colors.muted", "#6B7280"), font_family=font_family))
 
     parts.append(f'<rect x="{right_x}" y="{owner_y}" width="{swatch_size}" height="{swatch_size}" rx="{swatch_radius}" fill="{primary_color}"/>')
-    parts.append(svg_text(right_x + text_gap, owner_y + style_int(style, "ownerDonutChart.ownerLabelBaselineOffset", 16), primary_name, size=text_size(style, "ownerLabel", 22), weight=text_weight(style, "ownerLabel", "700"), fill=style_str(style, "colors.owner.primaryText", "#1E3A8A"), font_family=font_family))
+    parts.append(svg_wrapped_text(right_label_x, owner_label_y, primary_name, max_width=right_label_max_width, size=text_size(style, "ownerLabel", 22), weight=text_weight(style, "ownerLabel", "700"), fill=style_str(style, "colors.owner.primaryText", "#1E3A8A"), font_family=font_family))
     parts.append(svg_text(right_x + text_gap, owner_y + style_int(style, "ownerDonutChart.ownerValueBaselineOffset", 54), f"{primary}件", size=text_size(style, "ownerValue", 32), weight=text_weight(style, "ownerValue", "700"), fill=style_str(style, "colors.text", "#111827"), font_family=font_family))
     parts.append(svg_text(right_x + text_gap, owner_y + style_int(style, "ownerDonutChart.ownerPercentBaselineOffset", 84), f"{primary_pct}%", size=text_size(style, "ownerPercent", 20), weight=text_weight(style, "ownerPercent", "600"), fill=style_str(style, "colors.muted", "#6B7280"), font_family=font_family))
 

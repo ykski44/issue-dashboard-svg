@@ -87,6 +87,7 @@
     "barRadius": 21,
     // 左側ラベルのX座標です。
     "labelX": 32,
+    "labelRightPadding": 12,
     // 値ラベルと棒の間隔です。
     "valueGap": 16,
     // 軸の丸め単位です。
@@ -123,6 +124,7 @@
     "barRadius": 27,
     "segmentRadius": 12,
     "labelX": 32,
+    "labelRightPadding": 12,
     "totalXOffset": 36,
     "legendRight": 345,
     "legendY": 33,
@@ -158,6 +160,7 @@
     "primaryX": 28,
     "secondaryX": 524,
     "ownerY": 174,
+    "labelRightPadding": 4,
     "centerTotalYOffset": -4,
     "centerLabelYOffset": 28,
     "innerHoleInset": 1,
